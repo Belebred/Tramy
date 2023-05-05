@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using MongoDB.Driver;
+using Tramy.Backend.Helpers;
 using Tramy.Common.Locations;
 using Tramy.Common.Navigation;
 
@@ -15,7 +16,7 @@ namespace Tramy.Backend.Data.DBServices
     /// </summary>
     public class MeasuredPointService : BaseDbService<MeasuredPoint>
     {
-        public MeasuredPointService(IConfiguration configuration, ILogger<BaseDbService<MeasuredPoint>> logger, BaseLogService logService) : base(configuration, logger, logService)
+        public MeasuredPointService(ServiceConfiguration configuration, ILogger<BaseDbService<MeasuredPoint>> logger, BaseLogService logService) : base(configuration, logger, logService)
         {
         }
 

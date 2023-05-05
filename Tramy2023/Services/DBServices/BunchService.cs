@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Tramy.Backend.Helpers;
 using Tramy.Common.Chats;
 
 using Tramy.Common.Users;
@@ -32,7 +33,7 @@ namespace Tramy.Backend.Data.DBServices
         /// </summary>
         /// <param name="configuration">Configuration must be linked from Startup</param>
         /// <param name="logger">Logger must be linked from Startup</param>
-        public BunchService(UserService userService, IConfiguration configuration, ILogger<BaseDbService<Bunch>> logger, BaseLogService logService) : base(configuration, logger, logService)
+        public BunchService(UserService userService, ServiceConfiguration configuration, ILogger<BaseDbService<Bunch>> logger, BaseLogService logService) : base(configuration, logger, logService)
         {
             _bunchCollection = MainCollection.Database.GetCollection<Bunch>(nameof(Bunch));
             _userCollection = MainCollection.Database.GetCollection<User>(nameof(User));

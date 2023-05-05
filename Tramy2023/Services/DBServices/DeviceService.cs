@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using MongoDB.Driver;
+using Tramy.Backend.Helpers;
 using Tramy.Common.Devices;
 
 namespace Tramy.Backend.Data.DBServices
@@ -31,7 +32,7 @@ namespace Tramy.Backend.Data.DBServices
         /// </summary>
         /// <param name="configuration">Configuration must be link from Startup</param>
         /// <param name="logger">Logger must be link from Startup</param>
-        public DeviceService(IConfiguration configuration, ILogger<BaseDbService<Device>> logger, BaseLogService logService) : base(configuration, logger, logService)
+        public DeviceService(ServiceConfiguration configuration, ILogger<BaseDbService<Device>> logger, BaseLogService logService) : base(configuration, logger, logService)
         {
             _seriesCollection = MainCollection.Database.GetCollection<DeviceSeries>(nameof(DeviceSeries));
             _deviceInLocationCollection = MainCollection.Database.GetCollection<DeviceInLocation>(nameof(DeviceInLocation));

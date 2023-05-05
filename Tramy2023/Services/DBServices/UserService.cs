@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using Tramy.Backend.Helpers;
 using Tramy.Common.Chats;
 using Tramy.Common.CrossModels;
 using Tramy.Common.Hike;
@@ -32,7 +33,7 @@ namespace Tramy.Backend.Data.DBServices
         /// </summary>
         /// <param name="configuration">Configuration must be link from Startup</param>
         /// <param name="logger">Logger must be link from Startup</param>
-        public UserService(IConfiguration configuration, ILogger<BaseDbService<User>> logger, NotificationService notificationService, BaseLogService logService) : base(configuration, logger, logService)
+        public UserService(ServiceConfiguration configuration, ILogger<BaseDbService<User>> logger, NotificationService notificationService, BaseLogService logService) : base(configuration, logger, logService)
         {
             _hikeCollection = MainCollection.Database.GetCollection<Hike>(nameof(Hike));
             _userEventCollection = MainCollection.Database.GetCollection<UserEvent>(nameof(UserEvent));
@@ -295,7 +296,7 @@ namespace Tramy.Backend.Data.DBServices
         /// Get User by email or null if not exists
         /// </summary>
         /// <param name="email">Email of User</param>
-        public virtual async Task<User> GetByEmail(string email)
+        public virtual async Task<User?> GetByEmail(string email)
         {
             try
             {

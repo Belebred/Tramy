@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Tramy.Backend.Helpers;
 using Tramy.Common.Common;
 using Tramy.Common.System;
 using Tramy.Common.Users;
@@ -18,7 +19,7 @@ namespace Tramy.Backend.Data.DBServices
         /// </summary>
         /// <param name="configuration">Configuration must be link from Startup</param>
         /// <param name="logger">Logger must be link from Startup</param>
-        public SystemEventService(IConfiguration configuration, ILogger<BaseDbService<Event>> logger, BaseLogService logService) : base(configuration, logger, logService)
+        public SystemEventService(ServiceConfiguration configuration, ILogger<BaseDbService<Event>> logger, BaseLogService logService) : base(configuration, logger, logService)
         {
         }
 

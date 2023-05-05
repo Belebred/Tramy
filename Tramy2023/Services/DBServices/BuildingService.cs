@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using MongoDB.Driver;
 using System;
+using Tramy.Backend.Helpers;
 using Tramy.Common.Organizations;
 
 namespace Tramy.Backend.Data.DBServices
@@ -21,7 +22,7 @@ namespace Tramy.Backend.Data.DBServices
         /// </summary>
         /// <param name="configuration">Configuration must be link from Startup</param>
         /// <param name="logger">Logger must be link from Startup</param>
-        public BuildingService(IConfiguration configuration, ILogger<BaseDbService<Building>> logger, BaseLogService logService) : base(configuration, logger, logService)
+        public BuildingService(ServiceConfiguration configuration, ILogger<BaseDbService<Building>> logger, BaseLogService logService) : base(configuration, logger, logService)
         {
             _buildingCollection = MainCollection.Database.GetCollection<Building>(nameof(Building));
         }

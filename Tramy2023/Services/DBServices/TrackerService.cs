@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Tramy.Backend.Helpers;
 using Tramy.Common.Users;
 
 namespace Tramy.Backend.Data.DBServices
@@ -21,7 +22,7 @@ namespace Tramy.Backend.Data.DBServices
         /// </summary>
         /// <param name="configuration">Configuration must be link from Startup</param>
         /// <param name="logger">Logger must be link from Startup</param>
-        public TrackerService(IConfiguration configuration, ILogger<BaseDbService<Tracker>> logger, UserService userService, BaseLogService logService) : base(configuration, logger, logService)
+        public TrackerService(ServiceConfiguration configuration, ILogger<BaseDbService<Tracker>> logger, UserService userService, BaseLogService logService) : base(configuration, logger, logService)
         {
             _trackerCollcetion = MainCollection.Database.GetCollection<Tracker>(nameof(Tracker));
             _userCollection = MainCollection.Database.GetCollection<User>(nameof(User));

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using Tramy.Common.Locations;
+using Tramy.Backend.Helpers;
 
 namespace Tramy.Backend.Data.DBServices
 {
@@ -20,7 +21,7 @@ namespace Tramy.Backend.Data.DBServices
         /// </summary>
         /// <param name="configuration">Configuration must be link from Startup</param>
         /// <param name="logger">Logger must be link from Startup</param>
-        public LocationService(IConfiguration configuration, ILogger<BaseDbService<Location>> logger, BaseLogService logService) : base(configuration, logger, logService)
+        public LocationService(ServiceConfiguration configuration, ILogger<BaseDbService<Location>> logger, BaseLogService logService) : base(configuration, logger, logService)
         {
            
         }

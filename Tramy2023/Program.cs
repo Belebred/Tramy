@@ -13,6 +13,7 @@ using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 using Tramy.Common.Locations;
 using Tramy.Backend.Extensions;
+using Tramy.Backend.Helpers;
 
 namespace Tramy.Backend
 {
@@ -41,6 +42,8 @@ namespace Tramy.Backend
         public static void ConfigureServices(WebApplicationBuilder builder)
         {
             var services = builder.Services;
+            var configuration = ConfigurationFactory.FromYaml(Path.ChangeExtension(Assembly.GetEntryAssembly().Location, ".yaml"));
+            services.AddSingleton(configuration);
             services.AddCors();
             services.AddProblemDetails();
 

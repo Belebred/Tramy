@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Tramy.Backend.Helpers;
 using Tramy.Common.CrossModels;
 using Tramy.Common.Hike;
 using Tramy.Common.Users;
@@ -32,7 +33,7 @@ namespace Tramy.Backend.Data.DBServices
         /// </summary>
         /// <param name="configuration">Configuration must be link from Startup</param>
         /// <param name="logger">Logger must be link from Startup</param>
-        public HikeService(UserService userService, IConfiguration configuration, ILogger<BaseDbService<Hike>> logger, BaseLogService logService) : base(configuration, logger, logService)
+        public HikeService(UserService userService, ServiceConfiguration configuration, ILogger<BaseDbService<Hike>> logger, BaseLogService logService) : base(configuration, logger, logService)
         {
             _hikeCollection = MainCollection.Database.GetCollection<Hike>(nameof(Hike));
             _userCollection = MainCollection.Database.GetCollection<User>(nameof(User));

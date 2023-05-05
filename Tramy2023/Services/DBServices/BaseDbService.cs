@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using MongoDB.Bson;
 using MongoDB.Driver;
+using Tramy.Backend.Helpers;
 using Tramy.Common.Common;
 using Tramy.Common.Locations;
 using Tramy.Common.Logs;
@@ -41,9 +43,9 @@ namespace Tramy.Backend.Data.DBServices
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="configuration">Configuration must be link from Startup</param>
+        /// <param name="config">Configuration must be link from Startup</param>
         /// <param name="logger">Logger must be link from Startup</param>
-        public BaseDbService(IConfiguration configuration, ILogger<BaseDbService<T>> logger, BaseLogService logService)
+        public BaseDbService(ServiceConfiguration config, ILogger<BaseDbService<T>> logger, BaseLogService logService)
         {
             //save logger
             Logger = logger;
@@ -51,8 +53,8 @@ namespace Tramy.Backend.Data.DBServices
             //create MongoDB connection
             try
             {
-                var mongoClient = new MongoClient(configuration["MongoConnection"]);
-                MainDatabase = mongoClient.GetDatabase(configuration["MongoMainDB"]);
+                var mongoClient = new MongoClient(config.MongoConnection);
+                MainDatabase = mongoClient.GetDatabase(config.MongoMainDb);
                 MainCollection = MainDatabase.GetCollection<T>(typeof(T).Name);
                 Logger.LogDebug($"{typeof(T).Name}: Created connection");
             }

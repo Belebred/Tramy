@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using MongoDB.Driver;
+using Tramy.Backend.Helpers;
 using Tramy.Common.Users;
 
 namespace Tramy.Backend.Data.DBServices
@@ -17,7 +18,7 @@ namespace Tramy.Backend.Data.DBServices
         /// </summary>
         /// <param name="configuration">Configuration must be link from Startup</param>
         /// <param name="logger">Logger must be link from Startup</param>
-        public RoleService(IConfiguration configuration, ILogger<BaseDbService<Role>> logger, BaseLogService logService) : base(configuration, logger, logService)
+        public RoleService(ServiceConfiguration configuration, ILogger<BaseDbService<Role>> logger, BaseLogService logService) : base(configuration, logger, logService)
         {
         }
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Tramy.Backend.Helpers;
 using Tramy.Common.Notification;
 
 namespace Tramy.Backend.Data.DBServices
@@ -18,7 +19,7 @@ namespace Tramy.Backend.Data.DBServices
         /// </summary>
         /// <param name="configuration"></param>
         /// <param name="logger"></param>
-        public NotificationService(IConfiguration configuration, ILogger<BaseDbService<UserNotification>> logger, BaseLogService logService) : base(configuration, logger, logService)
+        public NotificationService(ServiceConfiguration configuration, ILogger<BaseDbService<UserNotification>> logger, BaseLogService logService) : base(configuration, logger, logService)
         {
         }
     }

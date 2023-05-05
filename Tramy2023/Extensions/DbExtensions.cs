@@ -1,5 +1,6 @@
 ﻿using MongoDB.Driver;
 using Tramy.Backend.Data.DBServices;
+using Tramy.Backend.Helpers;
 using Tramy.Common.Locations;
 using Tramy.Common.Users;
 
@@ -11,11 +12,11 @@ namespace Tramy.Backend.Extensions
         {
             services.AddOptions().Configure<IServiceProvider>((provider) =>
             {
-                var configuration = provider.GetRequiredService<IConfiguration>();
+                var configuration = provider.GetRequiredService<ServiceConfiguration>();
                 try
                 {
-                    var mongoClient = new MongoClient(configuration["MongoConnection"]);
-                    var mainDatabase = mongoClient.GetDatabase(configuration["MongoMainDB"]);
+                    var mongoClient = new MongoClient(configuration.MongoConnection);
+                    var mainDatabase = mongoClient.GetDatabase(configuration.MongoMainDb);
 
                     var locationCollection = mainDatabase.GetCollection<Location>(nameof(Location));
                     var indexLocationKeysDefinition = Builders<Location>.IndexKeys.Geo2DSphere(g => g.GeoPoint);

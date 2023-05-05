@@ -8,6 +8,7 @@ using Tramy.Common.Locations;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
+using Tramy.Backend.Helpers;
 
 namespace Tramy.Backend.Data.DBServices
 {
@@ -26,7 +27,7 @@ namespace Tramy.Backend.Data.DBServices
         /// </summary>
         private IMongoCollection<Polygon> _polygonCollection;
 
-        public LocationPartService(IConfiguration configuration, ILogger<BaseDbService<LocationPart>> logger, LocationService locationService, BaseLogService logService) : base(configuration, logger, logService)
+        public LocationPartService(ServiceConfiguration configuration, ILogger<BaseDbService<LocationPart>> logger, LocationService locationService, BaseLogService logService) : base(configuration, logger, logService)
         {
             _locationService = locationService;
             _polygonCollection = MainDatabase.GetCollection<Polygon>(nameof(Polygon));
